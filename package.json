@@ -1,0 +1,22 @@
+{
+  "name": "poketmonslider",
+  "version": "1.0.0",
+  "description": "Pockemon API를 이용해 슬라이더 만들기",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YANGSANGHEE/PoketmonSlider.git"
+  },
+  "keywords": [
+    "Practice"
+  ],
+  "author": "YSH",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YANGSANGHEE/PoketmonSlider/issues"
+  },
+  "homepage": "https://github.com/YANGSANGHEE/PoketmonSlider#readme"
+}
