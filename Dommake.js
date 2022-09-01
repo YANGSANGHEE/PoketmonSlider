@@ -1,12 +1,5 @@
 const makeDom = {
-  MakeTag: (
-    ParentTag,
-    Count,
-    ChildTag,
-    Attri = '',
-    AttriName = '',
-    Content = ''
-  ) => {
+  MakeTag: (ParentTag, Count, ChildTag) => {
     let CreEleArr = [];
     if (typeof ParentTag === 'string') {
       CreEleArr.unshift(`<${ParentTag}>`);
@@ -14,13 +7,20 @@ const makeDom = {
     }
     if (typeof Count === 'number') {
       for (let i = 0; i < Count; i++) {
-        if (typeof ChildTag === 'string') {
-          CreEleArr.push(
-            `<${ChildTag} ${Attri} = "${AttriName}">${Content}</${ChildTag}>`
-          );
-        }
+        CreEleArr.splice(1, 0, `<${ChildTag}></${ChildTag}>`);
       }
     }
+    console.log(CreEleArr);
+    return CreEleArr.join('');
+  },
+  MakeTag2: (Count, ChildTag) => {
+    let CreEleArr = [];
+    if (typeof Count === 'number') {
+      for (let i = 0; i < Count; i++) {
+        CreEleArr.push(`<${ChildTag}></${ChildTag}>`);
+      }
+    }
+    console.log(CreEleArr);
     return CreEleArr.join('');
   },
   AppendTag: (ParentNode, ChildNode) => {
