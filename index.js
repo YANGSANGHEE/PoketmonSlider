@@ -4,4 +4,4 @@ import { makeDom } from './Dommake.js';
 const root = document.getElementById('root');
 // console.log(root);
 
-makeDom.MakeTag(div)
+makeDom.AppendTag(root, makeDom.MakeTag('div', 2, 'div', null, null, null));
