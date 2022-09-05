@@ -10,7 +10,7 @@ const makeDom = {
         CreEleArr.splice(1, 0, `<${ChildTag}></${ChildTag}>`);
       }
     }
-    console.log(CreEleArr);
+    // console.log(CreEleArr);
     return CreEleArr.join('');
   },
   MakeTag2: (Count, ChildTag) => {
@@ -20,7 +20,7 @@ const makeDom = {
         CreEleArr.push(`<${ChildTag}></${ChildTag}>`);
       }
     }
-    console.log(CreEleArr);
+    // console.log(CreEleArr);
     return CreEleArr.join('');
   },
   AppendTag: (ParentNode, ChildNode) => {
