@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Poketmon Slider</title>
+  <style>
+    @font-face {
+      font-family: stardust;
+      src: url(./font/PFStardust\ 1.3.ttf);
+    }
+
+    * {
+      /* border: 1px solid blue; */
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+    function Htmlele() {
+      // root
+      const body = document.body;
+      let creroot = document.createElement("div");
+      body.appendChild(creroot);
+      const root = document.body.children[1]
+      root.setAttribute("id", "root");
+      // console.log(root);
+
+      // root > div
+      for (let i = 0; i < 2; i++) {
+        let crediv = document.createElement("div");
+        root.appendChild(crediv);
+      }
+
+      // root div:nth-child(1)
+      for (let i = 0; i < 2; i++) {
+        let crediv = document.createElement("div");
+        root.children[0].appendChild(crediv);
+      }
+      // root div:nth-child(1) div:nth-child(2)
+      let crediv_2 = document.createElement("div");
+      let crediv_2_1 = document.createElement("div");
+      let creP = document.createElement("p");
+      creP.textContent = "학원밖은 위험하니 이포켓몬 중 한마리를 골라보거라."
+      console.log(creP);
+      root.children[0].children[1].appendChild(crediv_2);
+      root.children[0].children[1].children[0].appendChild(creP);
+      root.children[0].children[1].children[0].appendChild(crediv_2_1);
+      // root div:nth-child(1) end
+
+      // root div:nth-child(2)
+      // root div:nth-child(2) div.silder set
+      let crediv_3 = document.createElement("div");
+      let crediv_3_1 = document.createElement("div");
+      let crediv_3_2 = document.createElement("div");
+      crediv_3.setAttribute("class", "slider-container");
+      crediv_3_1.setAttribute("class", "slider-next-btn");
+      crediv_3_2.setAttribute("class", "slider-prev-btn");
+      root.children[1].appendChild(crediv_3);
+      root.children[1].appendChild(crediv_3_1);
+      root.children[1].appendChild(crediv_3_2);
+      let crediv = document.createElement("div");
+      root.children[1].children[0].appendChild(crediv);
+
+      const sliderele = [...root.children[1].children[0].children];
+      console.log(sliderele);
+      sliderele[0].setAttribute("class", "slider-wrapper");
+
+      for (let i = 0; i < 20; i++) {
+        let crediv6 = document.createElement("div");
+        let crediv7 = document.createElement("div");
+        let crediv8 = document.createElement("div");
+        let crep = document.createElement("p");
+        crediv6.setAttribute("class", "slider-ele");
+        sliderele[0].appendChild(crediv6);
+        sliderele[0].children[i].appendChild(crediv7);
+        sliderele[0].children[i].appendChild(crediv8);
+        sliderele[0].children[i].appendChild(crep);
+      }
+    }
+    Htmlele();
+
+    const docinit = {
+      body: document.body,
+      root: document.getElementById("root"),
+      rootdiv: [...root.children],
+      slider: document.querySelector(".slider-container"),
+      sliderwrapper: document.querySelector(".slider-wrapper"),
+      sliderele: document.querySelectorAll(".slider-ele"),
+      sliderelep: document.querySelectorAll(".slider-ele>p"),
+      nextbtn: document.querySelector('.slider-next-btn'),
+      prevbtn: document.querySelector('.slider-prev-btn'),
+    }
+    console.log(docinit.sliderelep);
+    const styleinit = {
+      reset: (ele) => {
+        ele.style.margin = "0";
+        ele.style.padding = "0";
+        ele.style.boxSizing = "border-box";
+        ele.style.overflowX = "hidden";
+        ele.style.fontSize = "10px";
+      },
+      fontSet: (ele, family = null, size = null, weight = null) => {
+        ele.style.fontFamily = family;
+        ele.style.fontSize = size;
+        ele.style.fontWeight = weight
+      },
+      container: (ele, w = "auto", h = "auto", bg = null, size = null) => {
+        ele.style.width = w;
+        ele.style.height = h;
+        ele.style.background = bg;
+        ele.style.backgroundSize = size;
+      },
+      flexSet: (ele, direc, justify = null, align = null) => {
+        ele.style.display = "flex";
+        ele.style.flexDirection = direc;
+        ele.style.justifyContent = justify;
+        ele.style.alignItems = align;
+      },
+      posiSet: (ele, state, t = null, r = null, b = null, l = null, zindex = null) => {
+        ele.style.position = state;
+        ele.style.top = t;
+        ele.style.right = r;
+        ele.style.bottom = b;
+        ele.style.left = l;
+        ele.style.zIndex = zindex;
+      },
+    }
+
+    // body set
+    styleinit.reset(docinit.body);
+    styleinit.fontSet(docinit.body, "stardust", "11px");
+
+    // root set 
+    styleinit.container(docinit.root, "100vw", "100vh");
+
+    // root div
+    docinit.rootdiv.forEach((value) => {
+      styleinit.container(value, "inherit", 'inherit');
+      styleinit.flexSet(value, "column", "center", "center");
+    })
+    styleinit.container(docinit.rootdiv[0], "100%", "100%", "rgba(255,255,255,1)")
+    styleinit.posiSet(docinit.rootdiv[0], "absolute", "0", null, null, null, 2)
+    styleinit.posiSet(docinit.rootdiv[1], "absolute", "0", null, null, null, 1)
+
+    // root div:nth-child(1)
+    styleinit.container(docinit.rootdiv[0].children[0], "11vw", "19vw", 'url(./img/mrOh.png)no-repeat center', "cover");
+    docinit.rootdiv[0].children[0].style.marginBottom = "4vw" // Dr oh end
+
+    styleinit.container(docinit.rootdiv[0].children[1].children[0], "50.6vw", "15vw", "url(./img/logbox.png)no-repeat center", "cover")
+    docinit.rootdiv[0].children[0].style.opacity = 0;
+    docinit.rootdiv[0].children[1].style.opacity = 0;
+    docinit.rootdiv[0].children[0].style.transition = " cubic-bezier(0.5, 0.5, 0.5, 1) 3s";
+    docinit.rootdiv[0].children[1].style.transition = " cubic-bezier(0.5, 0.5, 0.5, 1) 2s";
+    setTimeout(() => {
+      docinit.rootdiv[0].children[0].style.opacity = 1;
+    }, 1500)
+    styleinit.flexSet(docinit.rootdiv[0].children[1].children[0], "row", "center", "center");
+    docinit.rootdiv[0].children[1].children[0].children[0].style.fontSize = "1.5vw";
+    setTimeout(() => {
+      docinit.rootdiv[0].children[1].style.opacity = 1;
+    }, 3400)
+    docinit.rootdiv[0].style.display = "none";
+
+    // root div:nth-child(2)
+    docinit.rootdiv[1].style.background = "url(./img/forest.jpg)no-repeat center"
+    docinit.rootdiv[1].style.backgroundSize = "cover";
+    docinit.rootdiv[1].style.transition = "ease .5s"
+    styleinit.posiSet(docinit.rootdiv[1], "relatvie");
+    styleinit.flexSet(docinit.rootdiv[1], "row", "center", "center");
+    styleinit.container(docinit.slider, "72rem", "40rem");
+    styleinit.posiSet(docinit.slider, "relative");
+    styleinit.container(docinit.sliderwrapper, "auto", "100%");
+    styleinit.flexSet(docinit.sliderwrapper, "row", "flex-start", "center");
+    styleinit.posiSet(docinit.sliderwrapper, "relative");
+    docinit.slider.style.overflowX = "hidden";
+    styleinit.container(docinit.nextbtn, "6rem", "6rem", "url(./img/left.png)no-repeat center", "cover");
+    styleinit.posiSet(docinit.nextbtn, "absolute", null, null, null, '100rem')
+    styleinit.container(docinit.prevbtn, "6rem", "6rem", "url(./img/right.png)no-repeat center", "cover");
+    styleinit.posiSet(docinit.prevbtn, "absolute", null, '100rem', null, null);
+    docinit.sliderele.forEach((value) => {
+      styleinit.container(value, "22rem", "33.1rem", "url(./img/poketedx.png)no-repeat center", "cover");
+      value.style.marginRight = "3rem"
+    })
+    function pokemon(count) {
+      const _BASIC_URL = `https://pokeapi.co/api/v2/pokemon-species/${count}`;
+      const request = new XMLHttpRequest();
+      request.open("GET", _BASIC_URL);
+      request.responseType = "json";
+      request.send();
+      request.addEventListener('load', () => {
+        const pokemonApi = request.response;
+        console.log(pokemonApi);
+        console.log((pokemonApi.id));
+        console.log(pokemonApi.genera[1].genus);
+        console.log(pokemonApi.names[2].name);
+        let value = docinit.sliderele[count - 1];
+        styleinit.container(value.children[0], "84%", "17.5rem", 'url(https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' + pokemonApi.id + '.png)no-repeat center', "cover");
+        styleinit.flexSet(value, "column", "center", "center");
+        value.children[0].style.margin = "6rem 0 1rem";
+        styleinit.container(value.children[1], "75%", "2.6rem");
+        value.children[1].style.fontSize = "12px";
+        value.children[1].textContent = `No.${pokemonApi.id}  ${pokemonApi.names[2].name} / ${pokemonApi.genera[1].genus}`
+        styleinit.container(value.children[2], "38%", "4.5rem");
+        value.children[2].style.paddingLeft = "1rem"
+        value.children[2].style.lineHeight = "1rem"
+        for (let entrie of pokemonApi.flavor_text_entries) {
+          if (entrie.language.name === "ko") {
+            console.log(entrie.flavor_text);
+            value.children[2].textContent = entrie.flavor_text;
+            break;
+          }
+        }
+      });
+    }
+    let count = 0;
+    for (let i = 0; i < 20; i++) {
+      count++
+      pokemon(count);
+    }
+    // slider
+
+    function slider() {
+      let currentIdx = 0;
+      let sliderwrapper = docinit.sliderwrapper
+      let slideCount = docinit.sliderele.length;
+      let slideWidth = 22;
+      let slideMargin = 3;
+      let count = 0;
+
+      sliderwrapper.style.width = (slideWidth + slideMargin) * slideCount - slideMargin + 'rem';
+
+      function moveSlide(num) {
+        sliderwrapper.style.transform = `translateX(${-num * 24.85}rem)`;
+        currentIdx = num;
+      }
+
+      docinit.nextbtn.addEventListener('click', function () {
+        docinit.sliderwrapper.style.transition = "ease .5s";
+        if (currentIdx < slideCount - 3) {
+          moveSlide(currentIdx + 1);
+          count++
+        } else {
+          moveSlide(0);
+          count = 0;
+        }
+        if (count === 3) {
+          docinit.rootdiv[1].style.background = "url(./img/volcaino.jpg)no-repeat center"
+          docinit.rootdiv[1].style.backgroundSize = "cover";
+        } else if (count === 6) {
+          docinit.rootdiv[1].style.background = "url(./img/water.jpg)no-repeat center"
+          docinit.rootdiv[1].style.backgroundSize = "cover";
+        } else if (count === 9) {
+          docinit.rootdiv[1].style.background = "url(./img/forest.jpg)no-repeat center"
+          docinit.rootdiv[1].style.backgroundSize = "cover";
+        }
+      });
+
+      docinit.prevbtn.addEventListener('click', function () {
+        if (currentIdx > 0) {
+          moveSlide(currentIdx - 1);
+          count--
+        }
+        if (count >= 3 && count < 6) {
+          docinit.rootdiv[1].style.background = "url(./img/volcaino.jpg)no-repeat center"
+          docinit.rootdiv[1].style.backgroundSize = "cover";
+        } else if (count >= 6 && count < 9) {
+          docinit.rootdiv[1].style.background = "url(./img/water.jpg)no-repeat center"
+          docinit.rootdiv[1].style.backgroundSize = "cover";
+        } else if (count >= 9) {
+          docinit.rootdiv[1].style.background = "url(./img/forest.jpg)no-repeat center"
+          docinit.rootdiv[1].style.backgroundSize = "cover";
+        } else if (count < 3) {
+          docinit.rootdiv[1].style.background = "url(./img/forest.jpg)no-repeat center"
+          docinit.rootdiv[1].style.backgroundSize = "cover";
+        }
+      });
+    }
+    slider();
+  </script>
+</body>
+
+</html>

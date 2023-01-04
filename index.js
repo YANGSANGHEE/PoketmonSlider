@@ -104,7 +104,7 @@ makeDom.Style(docinit.rootDiv1Con[1], {
 });
 
 // Typing
-const txtcon = '학원밖은 위험하니 이포켓몬 중 한마리를 골라보거라.'.split('');
+const txtcon = '학원밖은 위험하니 이포켓몬 중 한마리를 골라보거라.';
 let Count = 0;
 const typing = () => {
   if (Count < txtcon.length) {
@@ -112,13 +112,6 @@ const typing = () => {
     Count++;
   }
 };
-// bgm
-// let Bgm = new Audio('./sound/bgm_cut.mp3');
-// window.addEventListener('load', () => {
-//    Bgm.load();
-// });
-//  Bgm.volume = 0.5;
-//  Bgm.loop = true;
 function Timeout() {
   //animation
   setTimeout(() => {
@@ -137,88 +130,12 @@ function Timeout() {
           // Bgm.pause();
           makeDom.Style(docinit.rootDiv[0], {
             opacity: '0',
-            zIndex: '-1',
           });
-          makeDom.Style(docinit.rootDiv[1], {
-            opacity: '1',
-          });
+          window.location.href = './slider.html';
         });
       }, 6500);
-      // Bgm.play();
     }, 2000);
   }, 2000);
 }
 Timeout();
 // Main end
-
-// slider
-function PokemonLoad(Count) {
-  const _BASIC_URL = `https://pokeapi.co/api/v2/pokemon-species/${Count}`;
-  const request = new XMLHttpRequest();
-  request.open('GET', _BASIC_URL);
-  request.responseType = 'json';
-  request.send();
-  request.addEventListener('load', () => {
-    let PoketmonList = request.response;
-    console.log(PoketmonList);
-    makeDom.Style(docinit.SliderContainer, {
-      width: '72.45rem',
-      height: 'auto',
-      position: 'relative',
-      overflowX: 'hidden',
-    });
-    makeDom.Style(docinit.SliderWrapper, {
-      width: '580rem',
-      height: 'auto',
-      display: 'flex',
-      justifyContent: 'flex-start',
-      alignItems: 'center',
-      position: 'relative',
-    });
-    makeDom.Style(docinit.NextBtn, {
-      width: '6rem',
-      height: '6rem',
-      background: 'url(./img/left.png)no-repeat center',
-      backgroundSize: 'cover',
-      position: 'absolute',
-      left: '100rem',
-    });
-    makeDom.Style(docinit.PrevBtn, {
-      width: '6rem',
-      height: '6rem',
-      background: 'url(./img/right.png)no-repeat center',
-      backgroundSize: 'cover',
-      position: 'absolute',
-      right: '100rem',
-    });
-    // make Slider Ele
-    makeDom.AppendTag(docinit.SliderWrapper, makeDom.MakeTag2(Count, 'div'));
-    let SliderEles = [...docinit.SliderWrapper.children];
-    SliderEles.forEach((value) => {
-      value.setAttribute('class', 'Slider-Element');
-      makeDom.Style(value, {
-        width: '22rem',
-        height: '33.1rem',
-        display: 'center',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexDirection: 'column',
-        background: 'url(./img/poketedx.png)no-repeat center',
-        backgroundSize: 'cover',
-        marginRight: '3rem',
-      });
-    });
-    makeDom.AppendTag(
-      docinit.SliderElement,
-      `${makeDom.MakeTag2(1, 'div')}${makeDom.MakeTag2(
-        1,
-        'p'
-      )}${makeDom.MakeTag2(1, 'p')}`
-    );
-  });
-}
-let Pcount = 0;
-for (let i = 0; i < 20; i++) {
-  Pcount++;
-  PokemonLoad(Pcount);
-}
